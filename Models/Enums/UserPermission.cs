@@ -1,0 +1,51 @@
+namespace API.Models.Enums
+{
+    public enum UserPermission
+    {
+        canCreate,
+        canRead,
+        canUpdate,
+        canDelete,
+        canLogin,
+        canLogout,
+        canRegister,
+        canChangePassword,
+        canChangeEmail,
+        canChangeUsername,
+        canChangeRole,
+        canChangeLeader,
+        canChangeName,
+        canChangeId,
+        canChangeAll,
+        canChangePermissions,
+        canChangeAllPermissions,
+        canChangeAllUserPermissions,
+        canChangeAllLeaderPermissions,
+        canChangeAllAdminPermissions,
+        canChangeAllDeveloperPermissions,
+        canChangeAllUserPermissionsExceptAdmin,
+        canChangeAllUserPermissionsExceptDeveloper,
+        canChangeAllLeaderPermissionsExceptAdmin,
+        canChangeAllLeaderPermissionsExceptDeveloper,
+        canChangeAllAdminPermissionsExceptAdmin,
+        canChangeAllAdminPermissionsExceptDeveloper,
+        canChangeAllDeveloperPermissionsExceptAdmin,
+        canChangeAllDeveloperPermissionsExceptDeveloper,
+        canChangeAllUserPermissionsExceptAdminAndDeveloper,
+        canChangeAllLeaderPermissionsExceptAdminAndDeveloper,
+        canChangeAllAdminPermissionsExceptAdminAndDeveloper,
+        canChangeAllDeveloperPermissionsExceptAdminAndDeveloper,
+        canChangeAllUserPermissionsExceptAdminAndDeveloperAndLeader,
+        canChangeAllLeaderPermissionsExceptAdminAndDeveloperAndLeader,
+        canChangeAllAdminPermissionsExceptAdminAndDeveloperAndLeader,
+        canChangeAllDeveloperPermissionsExceptAdminAndDeveloperAndLeader,
+        canChangeAllUserPermissionsExceptAdminAndDeveloperAndLeaderAndUser,
+        canChangeAllLeaderPermissionsExceptAdminAndDeveloperAndLeaderAndUser,
+        canChangeAllAdminPermissionsExceptAdminAndDeveloperAndLeaderAndUser,
+        canChangeAllDeveloperPermissionsExceptAdminAndDeveloperAndLeaderAndUser,
+        canChangeAllUserPermissionsExceptAdminAndDeveloperAndLeaderAndUserAndLeader,
+
+
+
+    }
+}
