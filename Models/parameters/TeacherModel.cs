@@ -9,6 +9,7 @@ namespace Api.Models.parameters;
 [Table("Teacher")]
 public class TeacherModel
 {
+
     /// <summary>
     /// Teacher Id in the database.
     /// </summary>
@@ -26,6 +27,7 @@ public class TeacherModel
     /// </summary>
     /// <value> It must be a valid LeaderModel </value>
     [Column("Leader_Id")]
-    public LeaderModel Leader { get; set; } = null!;
+    [ForeignKey("LeaderId")]
+    public virtual LeaderModel Leader { get; set; } = new LeaderModel();
 
 }

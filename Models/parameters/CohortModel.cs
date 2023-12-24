@@ -14,19 +14,23 @@ namespace Api.Models.parameters;
 [Table("Cohort")]
 public class CohortModel
 {
+    private List<ExpenseModel>? expense = new List<ExpenseModel>();
+
     /// <summary>
     /// TCohort Id
     [Column("Id")]
+    [ConcurrencyCheck]
     public int Id { get; set; }
 
-    
+
     /// <summary>
     /// Type of cohort (TCohort) is a string that represents the type (Postgrado- Maestria - Doctorado) of cohort .
     /// </summary>
     /// <value></value>
     [Column("Type")]
     [Required]
-    public TypeCohort Type { get; set; } = TypeCohort.Postgrado;
+    [ConcurrencyCheck]
+    public virtual TypeCohort Type { get; set; } = TypeCohort.Postgrado;
 
     /// <summary>
     /// Periods is an integer that represents the number of periods of the cohort.
@@ -35,16 +39,17 @@ public class CohortModel
     ///  </value>
     [Required]
     [Column("Periods")]
-    [Range(1, 10)]
+    [ConcurrencyCheck]
     public int periods { get; set; }
-    [Required]
 
     /// <summary>
     /// StartDate is a DateTime that represents the start date of the cohort.
     /// </summary>
     /// <value> It must be a valid date
     /// </value>
+    [Required]
     [Column("StartDate")]
+    [ConcurrencyCheck]
     public DateTime StartDate { get; set; }
     /// <summary>
     /// Is the modality of the cohort (Presencial - Virtual - Hybrid).
@@ -54,7 +59,8 @@ public class CohortModel
     /// </value>
     [Required]
     [Column("Modality")]
-    public ModalityCohort Modality { get; set; } = ModalityCohort.Presencial;
+    [ConcurrencyCheck]
+    public virtual ModalityCohort Modality { get; set; } = ModalityCohort.Presencial;
 
     /// <summary>
     /// This is a boolean that represents if the cohort has and agreement.
@@ -62,8 +68,9 @@ public class CohortModel
     /// <value>
     /// It must be true or false
     /// </value>
-    
+
     [Column("HasAgreement")]
+    [ConcurrencyCheck]
     public bool Agreement { get; set; } = false;
 
     /// <summary>
@@ -74,8 +81,8 @@ public class CohortModel
     /// </value>
     ///     
     [Column("Expense_Id")]
-    public List<ExpenseModel> Expense { get; set; } = null!;
-
+    [ConcurrencyCheck]
+    public virtual List<ExpenseModel>? Expense { get => expense; set => expense = value; }
     /// <summary>
     /// This is a list of RegistrationModel that represents the all records of registrations of the cohort.
     /// </summary>
@@ -85,6 +92,13 @@ public class CohortModel
     /// 
 
     [Column("Registration_Id")]
-    public List<RegistrationModel> Registration { get; set; } = null!;
+    [ConcurrencyCheck]
+    public virtual List<RegistrationModel>? Registration { get; set; } = new List<RegistrationModel>();
+
+    /// <summary>
+    /// This is a list of StudentModel that represents the all students of the cohort.
+    /// </summary>
+    ///  
+
 
 }

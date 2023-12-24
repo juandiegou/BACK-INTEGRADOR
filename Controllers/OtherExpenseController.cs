@@ -123,7 +123,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(otherExpenseModel);
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace API.Controllers
             _context.OtherExpenseModel.Remove(otherExpenseModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

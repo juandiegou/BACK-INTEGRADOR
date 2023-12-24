@@ -50,7 +50,22 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            return await _context.ExpenseModel.ToListAsync();
+            return Ok(new List<object>
+            {
+                await _context.GeneralExpenseModel.ToListAsync(),
+                await _context.InvestmentExpenseModel.ToListAsync(),
+                await _context.RecurrentCostModel.ToListAsync(),
+                await _context.OtherExpenseModel.ToListAsync(),
+                await _context.OtherServiceNonTeachingStaff.ToListAsync(),
+                await _context.OtherServiceTeachingStaff.ToListAsync(),
+                await _context.TransferExpenseModel.ToListAsync(),
+                await _context.TravelExpenseModel.ToListAsync(),
+                await _context.ExpenseModel.ToListAsync()
+            });
+
+
+
+            //return await _context.ExpenseModel.ToListAsync();
         }
 
         /// <summary>
@@ -126,7 +141,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(expenseModel);
         }
 
         /// <summary>
@@ -186,7 +201,7 @@ namespace API.Controllers
             _context.ExpenseModel.Remove(expenseModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

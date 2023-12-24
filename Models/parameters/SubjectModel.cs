@@ -35,7 +35,7 @@ public class SubjectModel
     /// </value>
     [Required]
     [Column("Modality")]
-    public SubjectModality Modality { get; set; } = SubjectModality.Obligatoria;
+    public virtual SubjectModality Modality { get; set; } = SubjectModality.Obligatoria;
 
     /// <summary>
     /// this is a TeacherModel that represents the teacher that has a subject.
@@ -44,7 +44,8 @@ public class SubjectModel
     /// </value>
 
     [Column("Teacher_Name")]
-    public TeacherModel Teacher { get; set; } = null!;
+    [ForeignKey("TeacherModel")]
+    public virtual TeacherModel Teacher { get; set; } = new TeacherModel();
 
 
 

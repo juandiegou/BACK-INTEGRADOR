@@ -120,7 +120,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(programModel);
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace API.Controllers
             _context.ProgramModel.Remove(programModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

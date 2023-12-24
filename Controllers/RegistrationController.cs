@@ -125,7 +125,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(registrationModel);
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace API.Controllers
             _context.RegistrationModel.Remove(registrationModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

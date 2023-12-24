@@ -82,6 +82,7 @@ namespace API.Controllers
             }
             var subjectModel = await _context.SubjectModel
                 .Include(s => s.Teacher)
+                 .ThenInclude(t => t.Leader)
                 .FirstOrDefaultAsync(s => s.Id == id);
 
             if (subjectModel == null)
@@ -115,6 +116,15 @@ namespace API.Controllers
                 return BadRequest();
             }
 
+            if (subjectModel.Teacher != null)
+            {
+                _context.Entry(subjectModel.Teacher).State = EntityState.Modified;
+                if (subjectModel.Teacher.Leader != null)
+                {
+                    _context.Entry(subjectModel.Teacher.Leader).State = EntityState.Modified;
+                }
+
+            }
             _context.Entry(subjectModel).State = EntityState.Modified;
 
             try
@@ -133,7 +143,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(subjectModel);
         }
 
 
@@ -194,7 +204,7 @@ namespace API.Controllers
             _context.SubjectModel.Remove(subjectModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

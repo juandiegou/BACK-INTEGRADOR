@@ -116,7 +116,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(generalExpenseModel);
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace API.Controllers
             _context.GeneralExpenseModel.Remove(generalExpenseModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

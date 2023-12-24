@@ -45,10 +45,10 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RecurrentCostModel>>> GetRecurrentCostModel()
         {
-          if (_context.RecurrentCostModel == null)
-          {
-              return NotFound();
-          }
+            if (_context.RecurrentCostModel == null)
+            {
+                return NotFound();
+            }
             return await _context.RecurrentCostModel.ToListAsync();
         }
 
@@ -66,10 +66,10 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RecurrentCostModel>> GetRecurrentCostModel(int id)
         {
-          if (_context.RecurrentCostModel == null)
-          {
-              return NotFound();
-          }
+            if (_context.RecurrentCostModel == null)
+            {
+                return NotFound();
+            }
             var recurrentCostModel = await _context.RecurrentCostModel.FindAsync(id);
 
             if (recurrentCostModel == null)
@@ -120,7 +120,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(recurrentCostModel);
         }
 
 
@@ -139,10 +139,10 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<RecurrentCostModel>> PostRecurrentCostModel(RecurrentCostModel recurrentCostModel)
         {
-          if (_context.RecurrentCostModel == null)
-          {
-              return Problem("Entity set 'Context.RecurrentCostModel'  is null.");
-          }
+            if (_context.RecurrentCostModel == null)
+            {
+                return Problem("Entity set 'Context.RecurrentCostModel'  is null.");
+            }
             _context.RecurrentCostModel.Add(recurrentCostModel);
             await _context.SaveChangesAsync();
 
@@ -177,7 +177,7 @@ namespace API.Controllers
             _context.RecurrentCostModel.Remove(recurrentCostModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

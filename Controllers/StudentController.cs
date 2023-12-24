@@ -99,7 +99,7 @@ namespace API.Controllers
 
             try
             {
-                await _context.SaveChangesAsync();
+                _ = await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -113,7 +113,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(studentModel);
         }
 
 
@@ -137,8 +137,22 @@ namespace API.Controllers
             {
                 return Problem("Entity set 'Context.StudentModel'  is null.");
             }
-            _context.StudentModel.Add(studentModel);
-            await _context.SaveChangesAsync();
+
+            if (studentModel.Discount != null)
+            {
+                var discounts = new List<DiscountModel>();
+                foreach (var discount in studentModel.Discount)
+                {
+                    var temp = _context.DiscountModel.Add(discount);
+                    if (temp != null)
+                    {
+                        discounts.Add(temp.Entity);
+                    }
+                }
+                studentModel.Discount = discounts;
+            }
+            _ = _context.StudentModel.Add(studentModel);
+            _ = await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetStudentModel", new { id = studentModel.Id }, studentModel);
         }
@@ -163,16 +177,25 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            var studentModel = await _context.StudentModel.FindAsync(id);
-            if (studentModel == null)
+
+            StudentModel? studentModel = await _context.StudentModel.FindAsync(id);
+            if (studentModel != null)
+            {
+                if (studentModel.Discount != null)
+                {
+                    foreach (var discount in studentModel.Discount)
+                    {
+                        _ = _context.DiscountModel.Remove(discount);
+                    }
+                }
+                _ = _context.StudentModel.Remove(studentModel);
+                _ = await _context.SaveChangesAsync();
+                return Ok(studentModel);
+            }
+            else
             {
                 return NotFound();
             }
-
-            _context.StudentModel.Remove(studentModel);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
         }
 
 

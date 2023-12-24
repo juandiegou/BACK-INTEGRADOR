@@ -42,10 +42,10 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SpecialExpenseModel>>> GetSpecialExpenseModel()
         {
-          if (_context.SpecialExpenseModel == null)
-          {
-              return NotFound();
-          }
+            if (_context.SpecialExpenseModel == null)
+            {
+                return NotFound();
+            }
             return await _context.SpecialExpenseModel.ToListAsync();
         }
 
@@ -63,10 +63,10 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<SpecialExpenseModel>> GetSpecialExpenseModel(int id)
         {
-          if (_context.SpecialExpenseModel == null)
-          {
-              return NotFound();
-          }
+            if (_context.SpecialExpenseModel == null)
+            {
+                return NotFound();
+            }
             var specialExpenseModel = await _context.SpecialExpenseModel.FindAsync(id);
 
             if (specialExpenseModel == null)
@@ -117,7 +117,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(specialExpenseModel);
         }
 
         /// <summary>
@@ -136,10 +136,10 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<SpecialExpenseModel>> PostSpecialExpenseModel(SpecialExpenseModel specialExpenseModel)
         {
-          if (_context.SpecialExpenseModel == null)
-          {
-              return Problem("Entity set 'Context.SpecialExpenseModel'  is null.");
-          }
+            if (_context.SpecialExpenseModel == null)
+            {
+                return Problem("Entity set 'Context.SpecialExpenseModel'  is null.");
+            }
             _context.SpecialExpenseModel.Add(specialExpenseModel);
             await _context.SaveChangesAsync();
 
@@ -173,7 +173,7 @@ namespace API.Controllers
             _context.SpecialExpenseModel.Remove(specialExpenseModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

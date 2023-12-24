@@ -131,7 +131,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(investmentExpenseModel);
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace API.Controllers
             _context.InvestmentExpenseModel.Remove(investmentExpenseModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

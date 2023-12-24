@@ -76,7 +76,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(userModel);
         }
 
         // POST: api/User
@@ -113,7 +113,7 @@ namespace API.Controllers
             _context.UserModel.Remove(userModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         private bool UserModelExists(int id)

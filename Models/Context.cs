@@ -22,6 +22,12 @@ public class Context : DbContext
     {
     }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+    }
+
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -54,8 +60,27 @@ public class Context : DbContext
         modelBuilder.Entity<FixedExpenseModel>()
             .HasBaseType<ExpenseModel>();
 
+        // modelBuilder.Entity<ExpenseModel>()
+        //     .HasDiscriminator<string>("ExpenseType")
+        //     .HasValue<TravelExpenseModel>("TravelExpense")
+        //     .HasValue<RecurrentCostModel>("RecurrentCost")
+        //     .HasValue<OtherExpenseModel>("OtherExpense")
+        //     .HasValue<GeneralExpenseModel>("GeneralExpense")
+        //     .HasValue<OtherServiceNonTeachingStaff>("OtherServiceNonTeachingStaff")
+        //     .HasValue<OtherServiceTeachingStaff>("OtherServiceTeachingStaff")
+        //     .HasValue<InvestmentExpenseModel>("InvestmentExpense")
+        //     .HasValue<TransferExpenseModel>("TransferExpense");
+
+
+
         modelBuilder.Entity<CohortModel>()
             .HasMany(c => c.Expense)
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
+
+
+        modelBuilder.Entity<CohortModel>()
+            .HasMany(c => c.Registration)
             .WithOne()
             .OnDelete(DeleteBehavior.Cascade);
 
@@ -64,10 +89,25 @@ public class Context : DbContext
             .WithOne()
             .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<StudentModel>()
-            .HasMany(s => s.Discount)
+        modelBuilder.Entity<SubjectModel>()
+            .HasOne(s => s.Teacher)
             .WithOne()
             .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<ProgramModel>()
+            .HasMany(p => p.Teachers)
+            .WithOne()
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<RegistrationModel>()
+            .HasOne(r => r.Student)
+            .WithMany()
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<StudentModel>()
+           .HasMany(s => s.Discount)
+           .WithOne()
+           .HasForeignKey(d => d.Id);
 
 
     }

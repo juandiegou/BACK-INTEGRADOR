@@ -119,7 +119,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(serviceExpenseModel);
         }
         /// <summary>
         /// this method is used to create a ServiceExpenseModel
@@ -173,7 +173,7 @@ namespace API.Controllers
             _context.ServiceExpenseModel.Remove(serviceExpenseModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

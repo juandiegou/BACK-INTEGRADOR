@@ -45,10 +45,10 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TransferExpenseModel>>> GetTransferExpenseModel()
         {
-          if (_context.TransferExpenseModel == null)
-          {
-              return NotFound();
-          }
+            if (_context.TransferExpenseModel == null)
+            {
+                return NotFound();
+            }
             return await _context.TransferExpenseModel.ToListAsync();
         }
 
@@ -70,10 +70,10 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TransferExpenseModel>> GetTransferExpenseModel(int id)
         {
-          if (_context.TransferExpenseModel == null)
-          {
-              return NotFound();
-          }
+            if (_context.TransferExpenseModel == null)
+            {
+                return NotFound();
+            }
             var transferExpenseModel = await _context.TransferExpenseModel.FindAsync(id);
 
             if (transferExpenseModel == null)
@@ -128,7 +128,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(transferExpenseModel);
         }
 
 
@@ -148,10 +148,10 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<TransferExpenseModel>> PostTransferExpenseModel(TransferExpenseModel transferExpenseModel)
         {
-          if (_context.TransferExpenseModel == null)
-          {
-              return Problem("Entity set 'Context.TransferExpenseModel'  is null.");
-          }
+            if (_context.TransferExpenseModel == null)
+            {
+                return Problem("Entity set 'Context.TransferExpenseModel'  is null.");
+            }
             _context.TransferExpenseModel.Add(transferExpenseModel);
             await _context.SaveChangesAsync();
 
@@ -188,7 +188,7 @@ namespace API.Controllers
             _context.TransferExpenseModel.Remove(transferExpenseModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
 

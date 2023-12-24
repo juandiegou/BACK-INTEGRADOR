@@ -64,6 +64,7 @@ public class StudentModel
     /// </summary>
     /// <value> It must be a valid list of DiscountModel</value>
     [Column("Discount_Id")]
-    public List<DiscountModel> Discount { get; set; } = null!;
+    [ForeignKey("Id")]
+    public virtual List<DiscountModel>? Discount { get; set; } = new List<DiscountModel>();
 
 }

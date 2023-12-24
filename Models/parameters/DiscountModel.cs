@@ -32,8 +32,8 @@ public class DiscountModel
     /// It is a decimal that represents the cost of the discount over the registation.
     /// </summary>
     /// <value> It must be a valid decimal between 0 and 100000000000
-    /// </value>    // ///
-    [Column("Cost")] 
+    /// </value>
+    [Column("Cost")]
     public decimal Cost { get; set; }
 
     /// <summary>

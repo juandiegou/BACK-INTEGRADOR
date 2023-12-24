@@ -1,5 +1,6 @@
 using Api.Models.parameters.Expenses;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Models.parameters.Expenses.Fixed;
@@ -18,6 +19,7 @@ public class FixedExpenseModel : ExpenseModel
     /// Pago derechos de publicación de artículos científicos, edición de textos en inglés y otros
     /// </example>
     [Column("Criterion")]
+    [ConcurrencyCheck]
     public string Criterion { get; set; } = null!;
     /// <summary>
     /// this a decimal that represents the unit value of the service.
@@ -27,6 +29,7 @@ public class FixedExpenseModel : ExpenseModel
     /// 100.00
     /// </example>
     [Column("UnitValue")]
+    [ConcurrencyCheck]
     public decimal UnitValue { get; set; }
     /// <summary>
     /// this is an integer that represents the quantity of the service.
@@ -36,6 +39,7 @@ public class FixedExpenseModel : ExpenseModel
     /// 3
     /// </example>
     [Column("Quantity")]
+    [ConcurrencyCheck]
     public int Quantity { get; set; }
     /// <summary>
     /// tthis is a string that represents the type of the cost.
@@ -45,6 +49,7 @@ public class FixedExpenseModel : ExpenseModel
     /// Fijo
     /// </example>
     [Column("TypeCost")]
+    [ConcurrencyCheck]
     public string TypeCost { get; set; } = null!;
 
 }

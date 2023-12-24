@@ -108,6 +108,17 @@ namespace API.Controllers
                 return BadRequest();
             }
 
+            if (teacherModel.Leader != null)
+            {
+                var leader = await _context.TeacherModel.FindAsync(teacherModel.Leader.Id);
+                if (leader != null)
+                {
+                    _context.Entry(leader).State = EntityState.Detached;
+                    _context.Update(teacherModel.Leader);
+                }
+
+            }
+
             _context.Entry(teacherModel).State = EntityState.Modified;
 
             try
@@ -126,7 +137,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(teacherModel);
         }
 
         /// <summary>
@@ -183,7 +194,7 @@ namespace API.Controllers
             _context.TeacherModel.Remove(teacherModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

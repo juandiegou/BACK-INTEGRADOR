@@ -123,7 +123,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(otherServiceNonTeachingStaff);
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace API.Controllers
             _context.OtherServiceNonTeachingStaff.Remove(otherServiceNonTeachingStaff);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
 

@@ -122,7 +122,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(discountModel);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace API.Controllers
             _context.DiscountModel.Remove(discountModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

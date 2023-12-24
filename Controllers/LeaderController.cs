@@ -132,7 +132,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(leaderModel);
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace API.Controllers
             _context.LeaderModel.Remove(leaderModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

@@ -134,7 +134,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(fixedExpenseModel);
         }
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace API.Controllers
             _context.FixedExpenseModel.Remove(fixedExpenseModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>

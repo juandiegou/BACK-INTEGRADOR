@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
@@ -18,6 +19,7 @@ public class ServiceExpenseModel : ExpenseModel
     /// Asesoria
     /// </example>
     [Column("ServiceName")]
+    [ConcurrencyCheck]
     public string ServiceName { get; set; } = null!;
     /// <summary>
     /// this is a string that represents the type of the service.
@@ -27,6 +29,7 @@ public class ServiceExpenseModel : ExpenseModel
     /// Fijo
     /// </example>
     [Column("ServiceType")]
+    [ConcurrencyCheck]
     public string ServiceType { get; set; } = null!;
     /// <summary>
     /// this is a decimal that represents the cost of the service.
@@ -36,5 +39,6 @@ public class ServiceExpenseModel : ExpenseModel
     /// 100.00
     /// </example>
     [Column("ServiceCost")]
+    [ConcurrencyCheck]
     public decimal ServiceCost { get; set; }
 }

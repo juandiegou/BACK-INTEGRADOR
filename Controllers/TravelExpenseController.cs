@@ -46,10 +46,10 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TravelExpenseModel>>> GetTravelExpenseModel()
         {
-          if (_context.TravelExpenseModel == null)
-          {
-              return NotFound();
-          }
+            if (_context.TravelExpenseModel == null)
+            {
+                return NotFound();
+            }
             return await _context.TravelExpenseModel.ToListAsync();
         }
 
@@ -72,10 +72,10 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<TravelExpenseModel>> GetTravelExpenseModel(int id)
         {
-          if (_context.TravelExpenseModel == null)
-          {
-              return NotFound();
-          }
+            if (_context.TravelExpenseModel == null)
+            {
+                return NotFound();
+            }
             var travelExpenseModel = await _context.TravelExpenseModel.FindAsync(id);
 
             if (travelExpenseModel == null)
@@ -130,7 +130,7 @@ namespace API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(travelExpenseModel);
         }
 
         /// <summary>
@@ -151,10 +151,10 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<TravelExpenseModel>> PostTravelExpenseModel(TravelExpenseModel travelExpenseModel)
         {
-          if (_context.TravelExpenseModel == null)
-          {
-              return Problem("Entity set 'Context.TravelExpenseModel'  is null.");
-          }
+            if (_context.TravelExpenseModel == null)
+            {
+                return Problem("Entity set 'Context.TravelExpenseModel'  is null.");
+            }
             _context.TravelExpenseModel.Add(travelExpenseModel);
             await _context.SaveChangesAsync();
 
@@ -193,7 +193,7 @@ namespace API.Controllers
             _context.TravelExpenseModel.Remove(travelExpenseModel);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(id);
         }
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace API.Controllers
         /// <returns>
         /// it returns a boolean that represents if the travel expense exists or not
         /// </returns>
-        
+
         /// 
         private bool TravelExpenseModelExists(int id)
         {
