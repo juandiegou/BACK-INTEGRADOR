@@ -29,11 +29,14 @@ Luego de descargar el repositorio se recomienda correr los siguientes comandos
 # Para limpiar y reconstruir la solucion
 dotnet clean
 dotnet build
-        
+
+```
+
 ```bash
 # En caso se una compilacion exitosa se procede a ejecutar el backend con el comando
 dotnet run
 
+```
 
 # Contribución
 
